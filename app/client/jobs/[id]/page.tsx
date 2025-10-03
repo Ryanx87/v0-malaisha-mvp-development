@@ -4,6 +4,7 @@ import { AuthGuard } from "@/components/auth-guard"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { useParams } from "next/navigation"
 import {
   Briefcase,
   MessageSquare,
@@ -15,6 +16,7 @@ import {
   User,
   CheckCircle,
   XCircle,
+  Sparkles,
 } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
@@ -80,6 +82,7 @@ const mockApplications = [
 
 export default function ClientJobDetail() {
   const [applications, setApplications] = useState(mockApplications)
+  const params = useParams()
 
   const handleAccept = (applicationId: number) => {
     setApplications(applications.map((app) => (app.id === applicationId ? { ...app, status: "accepted" } : app)))
@@ -117,7 +120,7 @@ export default function ClientJobDetail() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
                 <span className="flex items-center gap-1">
                   <Briefcase className="w-4 h-4" />
                   {mockJob.category}
@@ -134,6 +137,14 @@ export default function ClientJobDetail() {
                   Posted {mockJob.postedDate}
                 </span>
               </div>
+
+              {/* AI Matching Button */}
+              <Link href={`/client/jobs/${params.id}/matches`}>
+                <Button variant="outline" className="w-full border-purple-200 hover:bg-purple-50 bg-transparent">
+                  <Sparkles className="w-4 h-4 mr-2 text-purple-600" />
+                  Find AI-Matched Providers
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
