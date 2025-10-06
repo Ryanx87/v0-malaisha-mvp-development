@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useRouter } from "next/navigation"
 import { Briefcase, Users, Shield, ArrowRight, CheckCircle2 } from "lucide-react"
+import Link from "next/link"
 
 export default function Home() {
   const router = useRouter()
@@ -46,6 +47,13 @@ export default function Home() {
               <h1 className="text-2xl font-bold text-foreground">Malaisha</h1>
               <p className="text-xs text-muted-foreground">by Greenspot Legacy</p>
             </div>
+          </div>
+          <div>
+            <Link href="/supabase-demo" passHref>
+              <Button variant="outline" size="sm">
+                Supabase Demo
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
